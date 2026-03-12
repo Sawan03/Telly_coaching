@@ -6,597 +6,1252 @@
 <title>Success Tally Academy – Sanawad</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <style>
+/* ============================
+   RESET & BASE
+============================ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;font-size:16px;}
-body{font-family:'Plus Jakarta Sans',sans-serif;background:#FDFAF5;color:#1A1A2E;overflow-x:hidden;line-height:1.6;}
-img{max-width:100%;display:block;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter',sans-serif;
+  background:#ffffff;
+  color:#1a1a2e;
+  overflow-x:hidden;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
 a{text-decoration:none;color:inherit;}
 ul{list-style:none;}
+
+/* ============================
+   VARIABLES
+============================ */
 :root{
-  --cream:#FDFAF5;--cream2:#F5EFE0;--ink:#1A1A2E;--ink2:#3D3D5C;--ink3:#7B7B9A;
-  --saffron:#E8600A;--saffron-light:#FF7A20;--teal:#0A7B6C;--teal-light:#0FA88F;
-  --gold:#C9932A;--gold-light:#F0B429;--white:#FFFFFF;--border:#E8E0D0;
-  --shadow:0 4px 24px rgba(26,26,46,0.08);--shadow-lg:0 16px 56px rgba(26,26,46,0.14);
-  --r:16px;--r-lg:28px;
+  --white:#ffffff;
+  --bg:#ffffff;
+  --bg2:#f8fafc;
+  --bg3:#f1f5f9;
+  --ink:#0f172a;
+  --ink2:#334155;
+  --ink3:#64748b;
+  --ink4:#94a3b8;
+  --border:#e2e8f0;
+  --border2:#cbd5e1;
+
+  /* Brand colors — exact Simplora style */
+  --blue:#3b82f6;
+  --blue-d:#2563eb;
+  --blue-light:#eff6ff;
+  --cyan:#06b6d4;
+  --cyan-light:#ecfeff;
+  --green:#10b981;
+  --green-light:#ecfdf5;
+  --purple:#8b5cf6;
+  --purple-light:#f5f3ff;
+  --orange:#f97316;
+  --orange-light:#fff7ed;
+  --red:#ef4444;
+  --red-light:#fef2f2;
+  --yellow:#f59e0b;
+  --yellow-light:#fffbeb;
+
+  --grad:linear-gradient(135deg,#3b82f6,#06b6d4);
+  --grad2:linear-gradient(135deg,#8b5cf6,#3b82f6);
+
+  --r:12px;
+  --r-lg:18px;
+  --r-xl:24px;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.05);
+  --shadow:0 4px 16px rgba(0,0,0,.07),0 2px 4px rgba(0,0,0,.04);
+  --shadow-lg:0 12px 40px rgba(0,0,0,.1),0 4px 12px rgba(0,0,0,.05);
+  --shadow-blue:0 8px 32px rgba(59,130,246,.2);
 }
+
+/* ============================
+   SCROLLBAR
+============================ */
 ::-webkit-scrollbar{width:5px;}
-::-webkit-scrollbar-track{background:var(--cream);}
-::-webkit-scrollbar-thumb{background:var(--saffron);border-radius:10px;}
+::-webkit-scrollbar-track{background:#f1f5f9;}
+::-webkit-scrollbar-thumb{background:#3b82f6;border-radius:5px;}
 
-/* ANN BAR */
-.ann-bar{background:var(--ink);color:var(--cream);text-align:center;padding:.55rem 1rem;font-size:.78rem;font-weight:600;letter-spacing:.06em;position:relative;z-index:200;}
-.ann-bar span{color:var(--gold-light);margin:0 .4rem;}
+/* ============================
+   ANNOUNCEMENT BAR
+============================ */
+.ann-bar{
+  background:linear-gradient(90deg,#2563eb,#7c3aed);
+  color:#fff;
+  text-align:center;
+  padding:.55rem 1rem;
+  font-size:.78rem;
+  font-weight:600;
+  letter-spacing:.04em;
+  position:relative;
+  z-index:200;
+}
+.ann-bar .ann-highlight{
+  background:rgba(255,255,255,.2);
+  border-radius:50px;
+  padding:.12rem .65rem;
+  margin:0 .4rem;
+  font-weight:700;
+}
 
-/* NAVBAR */
-.navbar{position:sticky;top:0;z-index:100;background:rgba(253,250,245,0.95);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--border);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:68px;transition:box-shadow .3s;}
+/* ============================
+   NAVBAR — Simplora exact
+============================ */
+.navbar{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(255,255,255,0.95);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  height:68px;
+  padding:0 5%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  transition:box-shadow .3s;
+}
 .navbar.scrolled{box-shadow:var(--shadow);}
-.nav-brand{display:flex;align-items:center;gap:.75rem;}
-.nav-brand-icon{width:40px;height:40px;background:var(--ink);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
-.nav-brand-text{font-family:'Playfair Display',serif;font-weight:800;font-size:1.05rem;color:var(--ink);line-height:1.15;}
-.nav-brand-text small{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--saffron);font-style:normal;}
-.nav-links{display:flex;align-items:center;gap:2rem;}
-.nav-links a{font-size:.875rem;font-weight:500;color:var(--ink2);transition:color .2s;white-space:nowrap;}
-.nav-links a:hover{color:var(--saffron);}
-.btn-wa{display:inline-flex;align-items:center;gap:.5rem;background:var(--saffron);color:#fff;padding:.6rem 1.3rem;border-radius:50px;font-size:.82rem;font-weight:700;letter-spacing:.02em;transition:all .25s;white-space:nowrap;border:none;cursor:pointer;}
-.btn-wa:hover{background:var(--saffron-light);transform:translateY(-1px);box-shadow:0 6px 20px rgba(232,96,10,.35);}
+.nav-logo{display:flex;align-items:center;gap:.7rem;}
+.nav-logo-icon{
+  width:36px;height:36px;
+  background:var(--grad);
+  border-radius:9px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;font-weight:900;color:#fff;
+  box-shadow:var(--shadow-blue);
+  flex-shrink:0;
+}
+.nav-logo-text{
+  font-size:.95rem;
+  font-weight:800;
+  color:var(--ink);
+  letter-spacing:-.02em;
+  line-height:1.2;
+}
+.nav-logo-text small{
+  display:block;
+  font-size:.6rem;
+  font-weight:500;
+  color:var(--ink3);
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:2rem;
+}
+.nav-links a{
+  font-size:.875rem;
+  font-weight:500;
+  color:var(--ink2);
+  transition:color .2s;
+  white-space:nowrap;
+}
+.nav-links a:hover{color:var(--blue);}
+.nav-cta{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  background:var(--blue);
+  color:#fff;
+  padding:.6rem 1.4rem;
+  border-radius:50px;
+  font-size:.83rem;
+  font-weight:700;
+  transition:all .25s;
+  white-space:nowrap;
+  box-shadow:0 4px 14px rgba(59,130,246,.3);
+  border:none;cursor:pointer;
+}
+.nav-cta:hover{background:var(--blue-d);transform:translateY(-1px);box-shadow:0 8px 22px rgba(59,130,246,.4);}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.4rem;background:none;border:none;}
-.hamburger span{display:block;width:24px;height:2px;background:var(--ink);border-radius:2px;transition:all .3s;}
-.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(253,250,245,0.98);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:1.8rem;padding:2rem;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--ink2);border-radius:2px;transition:.3s;}
+.mobile-menu{
+  display:none;
+  position:fixed;inset:0;z-index:99;
+  background:rgba(255,255,255,.98);
+  backdrop-filter:blur(20px);
+  flex-direction:column;align-items:center;justify-content:center;gap:1.8rem;
+}
 .mobile-menu.open{display:flex;}
-.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;color:var(--ink);transition:color .2s;}
-.mobile-menu a:hover{color:var(--saffron);}
-.mobile-close{position:absolute;top:1.5rem;right:1.5rem;font-size:1.2rem;background:var(--cream2);border:none;cursor:pointer;color:var(--ink);width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:50%;}
+.mobile-menu a{
+  font-size:1.9rem;font-weight:800;
+  color:var(--ink);letter-spacing:-.02em;
+  transition:color .2s;
+}
+.mobile-menu a:hover{color:var(--blue);}
+.mob-close{
+  position:absolute;top:1.5rem;right:1.5rem;
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:50%;width:40px;height:40px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;color:var(--ink2);font-size:1rem;
+}
 
-/* HERO */
-.hero{min-height:calc(100vh - 105px);display:flex;align-items:center;padding:5rem 5% 4rem;position:relative;overflow:hidden;background:var(--cream);}
-.hero-blob{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0;}
-.blob1{width:500px;height:500px;background:rgba(232,96,10,.08);top:-100px;right:-100px;}
-.blob2{width:400px;height:400px;background:rgba(10,123,108,.06);bottom:-80px;left:-80px;}
-.hero-inner{max-width:1160px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;position:relative;z-index:1;}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;background:rgba(232,96,10,.1);border:1px solid rgba(232,96,10,.25);border-radius:50px;padding:.35rem .9rem;font-size:.73rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--saffron);margin-bottom:1.4rem;animation:fadeUp .6s ease both;}
-.live-dot{width:7px;height:7px;background:#22c55e;border-radius:50%;box-shadow:0 0 0 2px rgba(34,197,94,.3);animation:blink 1.4s infinite;}
+/* ============================
+   HERO
+============================ */
+.hero{
+  padding:6rem 5% 5rem;
+  background:var(--white);
+  position:relative;
+  overflow:hidden;
+}
+/* subtle dot grid like Simplora */
+.hero::before{
+  content:'';
+  position:absolute;inset:0;
+  background-image:radial-gradient(circle,#e2e8f0 1.5px,transparent 1.5px);
+  background-size:32px 32px;
+  opacity:.5;
+  pointer-events:none;
+}
+/* top gradient glow */
+.hero::after{
+  content:'';
+  position:absolute;
+  top:-200px;left:50%;
+  transform:translateX(-50%);
+  width:800px;height:500px;
+  background:radial-gradient(ellipse,rgba(59,130,246,.06),transparent 65%);
+  pointer-events:none;
+}
+.hero-inner{
+  max-width:1160px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5rem;
+  align-items:center;
+  position:relative;z-index:1;
+}
+
+/* Hero Left */
+.hero-pill{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--blue-light);
+  border:1px solid rgba(59,130,246,.2);
+  border-radius:50px;
+  padding:.35rem .9rem;
+  font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--blue);
+  margin-bottom:1.5rem;
+  animation:fadeUp .55s ease both;
+}
+.live-dot{width:7px;height:7px;background:#22c55e;border-radius:50%;box-shadow:0 0 0 2px rgba(34,197,94,.25);animation:blink 1.4s infinite;}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
-.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5.5vw,4rem);font-weight:900;line-height:1.06;letter-spacing:-.02em;color:var(--ink);animation:fadeUp .65s .08s ease both;}
-.hero-title em{font-style:italic;color:var(--saffron);}
-.hero-title .teal-word{position:relative;display:inline-block;color:var(--teal);}
-.hero-title .teal-word::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:4px;background:var(--teal);border-radius:4px;opacity:.3;}
-.hero-desc{margin-top:1.3rem;font-size:1rem;color:var(--ink2);line-height:1.75;max-width:460px;animation:fadeUp .65s .16s ease both;}
-.hero-desc strong{color:var(--ink);font-weight:700;}
-.hero-cta-row{display:flex;align-items:center;gap:1rem;margin-top:2.2rem;flex-wrap:wrap;animation:fadeUp .65s .24s ease both;}
-.btn-main{display:inline-flex;align-items:center;gap:.6rem;background:var(--saffron);color:#fff;padding:1rem 2rem;border-radius:50px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.95rem;transition:all .25s;box-shadow:0 8px 28px rgba(232,96,10,.3);cursor:pointer;border:none;white-space:nowrap;}
-.btn-main:hover{background:var(--saffron-light);transform:translateY(-2px);box-shadow:0 14px 36px rgba(232,96,10,.45);}
-.btn-outline{display:inline-flex;align-items:center;gap:.5rem;background:transparent;color:var(--ink);padding:.95rem 1.7rem;border-radius:50px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:.9rem;border:2px solid var(--border);transition:all .25s;white-space:nowrap;cursor:pointer;}
-.btn-outline:hover{border-color:var(--teal);color:var(--teal);transform:translateY(-2px);}
-.hero-trust{display:flex;align-items:center;gap:1.2rem;margin-top:2rem;flex-wrap:wrap;animation:fadeUp .65s .32s ease both;}
-.trust-chip{display:flex;align-items:center;gap:.4rem;font-size:.79rem;font-weight:600;color:var(--ink2);}
-.trust-sep{width:4px;height:4px;background:var(--border);border-radius:50%;flex-shrink:0;}
-.hero-card{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow-lg);padding:2.2rem;position:relative;animation:fadeUp .7s .1s ease both;border:1px solid var(--border);}
-.hero-card::before{content:'';position:absolute;top:0;left:2rem;right:2rem;height:3px;background:linear-gradient(90deg,var(--saffron),var(--gold-light));border-radius:0 0 4px 4px;}
-.mentor-row{display:flex;align-items:center;gap:1rem;padding-bottom:1.3rem;border-bottom:1px solid var(--border);margin-bottom:1.3rem;}
-.mentor-ava{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,var(--saffron),var(--gold-light));display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:800;font-size:1.25rem;color:#fff;flex-shrink:0;box-shadow:0 4px 16px rgba(232,96,10,.3);}
-.mentor-meta .name{font-family:'Playfair Display',serif;font-weight:700;font-size:.98rem;color:var(--ink);}
-.mentor-meta .role{font-size:.75rem;color:var(--ink3);margin-top:.1rem;font-weight:500;}
-.mentor-meta .badge{display:inline-block;background:rgba(10,123,108,.1);color:var(--teal);font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.15rem .55rem;border-radius:50px;margin-top:.3rem;}
-.course-pills{display:flex;flex-direction:column;gap:.55rem;}
-.cpill{display:flex;align-items:center;gap:.75rem;padding:.72rem 1rem;border-radius:12px;background:var(--cream);border:1px solid var(--border);transition:all .2s;}
-.cpill:hover{border-color:var(--saffron);background:rgba(232,96,10,.04);}
-.cpill-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
-.d1{background:var(--saffron);}.d2{background:var(--teal);}.d3{background:var(--gold);}.d4{background:#7C3AED;}
-.cpill-label{font-size:.83rem;font-weight:600;color:var(--ink);flex:1;}
-.cpill-tag{font-size:.66rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink3);background:var(--white);padding:.12rem .5rem;border-radius:50px;border:1px solid var(--border);white-space:nowrap;}
-.hero-card-footer{margin-top:1.3rem;padding-top:1.2rem;border-top:1px solid var(--border);}
-.hero-card-footer a{display:flex;align-items:center;justify-content:center;gap:.6rem;background:var(--ink);color:#fff;border-radius:12px;padding:.85rem;font-weight:700;font-size:.87rem;transition:all .25s;}
-.hero-card-footer a:hover{background:var(--saffron);transform:translateY(-1px);}
-@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+.hero-title{
+  font-size:clamp(2.4rem,5vw,3.8rem);
+  font-weight:900;
+  line-height:1.06;
+  letter-spacing:-.035em;
+  color:var(--ink);
+  animation:fadeUp .6s .06s ease both;
+}
+/* Simplora style: part of title in blue */
+.hero-title .blue-span{color:var(--blue);}
+.hero-title .grad-span{
+  background:var(--grad);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-desc{
+  margin-top:1.2rem;
+  font-size:1rem;
+  color:var(--ink3);
+  line-height:1.75;
+  max-width:460px;
+  animation:fadeUp .6s .12s ease both;
+}
+.hero-desc strong{color:var(--ink2);font-weight:600;}
+.hero-btns{
+  display:flex;align-items:center;gap:.9rem;
+  margin-top:2rem;flex-wrap:wrap;
+  animation:fadeUp .6s .18s ease both;
+}
+.btn-blue{
+  display:inline-flex;align-items:center;gap:.55rem;
+  background:var(--blue);color:#fff;
+  padding:1rem 2rem;border-radius:50px;
+  font-weight:700;font-size:.92rem;
+  box-shadow:0 6px 24px rgba(59,130,246,.3);
+  transition:all .25s;border:none;cursor:pointer;white-space:nowrap;
+}
+.btn-blue:hover{background:var(--blue-d);transform:translateY(-2px);box-shadow:0 12px 32px rgba(59,130,246,.4);}
+.btn-outline{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--white);color:var(--ink2);
+  padding:.95rem 1.8rem;border-radius:50px;
+  font-weight:600;font-size:.88rem;
+  border:1.5px solid var(--border2);
+  transition:all .25s;white-space:nowrap;cursor:pointer;
+}
+.btn-outline:hover{border-color:var(--blue);color:var(--blue);}
+.hero-trust{
+  display:flex;align-items:center;gap:1.2rem;
+  margin-top:1.8rem;flex-wrap:wrap;
+  animation:fadeUp .6s .24s ease both;
+}
+.trust-chip{
+  display:flex;align-items:center;gap:.4rem;
+  font-size:.78rem;font-weight:500;color:var(--ink3);
+}
+.t-sep{width:3px;height:3px;background:var(--border2);border-radius:50%;flex-shrink:0;}
 
-/* STATS */
-.stats-strip{background:var(--ink);padding:2.5rem 5%;}
-.stats-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;text-align:center;}
-.stat-item{padding:1rem;border-right:1px solid rgba(255,255,255,.08);}
-.stat-item:last-child{border-right:none;}
-.stat-num{font-family:'Playfair Display',serif;font-size:2.3rem;font-weight:900;color:var(--gold-light);line-height:1;}
-.stat-label{font-size:.76rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:.4rem;}
+/* Hero Right — Simplora card style */
+.hero-card{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:var(--r-xl);
+  box-shadow:var(--shadow-lg);
+  padding:1.8rem;
+  animation:fadeUp .65s .08s ease both;
+  position:relative;
+  overflow:hidden;
+}
+.hero-card::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--grad);
+}
+.mentor-row{
+  display:flex;align-items:center;gap:.85rem;
+  padding-bottom:1.2rem;border-bottom:1px solid var(--border);
+  margin-bottom:1.2rem;
+}
+.m-ava{
+  width:50px;height:50px;border-radius:12px;
+  background:var(--grad);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;font-weight:900;color:#fff;
+  flex-shrink:0;box-shadow:0 4px 12px rgba(59,130,246,.3);
+}
+.m-info .m-name{font-size:.92rem;font-weight:800;color:var(--ink);letter-spacing:-.01em;}
+.m-info .m-role{font-size:.72rem;color:var(--ink3);margin-top:.08rem;font-weight:500;}
+.m-info .m-badge{
+  display:inline-block;
+  background:var(--green-light);color:var(--green);
+  font-size:.62rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  padding:.12rem .55rem;border-radius:50px;margin-top:.25rem;
+  border:1px solid rgba(16,185,129,.2);
+}
+.course-rows{display:flex;flex-direction:column;gap:.45rem;}
+.crow{
+  display:flex;align-items:center;gap:.7rem;
+  padding:.65rem .85rem;border-radius:10px;
+  background:var(--bg2);border:1px solid var(--border);
+  transition:all .2s;
+}
+.crow:hover{border-color:rgba(59,130,246,.3);background:var(--blue-light);}
+.crow-icon{
+  width:30px;height:30px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.88rem;flex-shrink:0;
+}
+.ci-blue{background:var(--blue-light);}
+.ci-cyan{background:var(--cyan-light);}
+.ci-purple{background:var(--purple-light);}
+.ci-green{background:var(--green-light);}
+.crow-label{font-size:.81rem;font-weight:600;color:var(--ink2);flex:1;}
+.crow-tag{
+  font-size:.62rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  padding:.12rem .45rem;border-radius:50px;white-space:nowrap;
+}
+.ct-blue{background:var(--blue-light);color:var(--blue);}
+.ct-cyan{background:var(--cyan-light);color:var(--cyan);}
+.ct-purple{background:var(--purple-light);color:var(--purple);}
+.ct-green{background:var(--green-light);color:var(--green);}
+.card-footer-cta{
+  margin-top:1.2rem;padding-top:1.1rem;border-top:1px solid var(--border);
+}
+.card-footer-cta a{
+  display:flex;align-items:center;justify-content:center;gap:.55rem;
+  background:var(--blue);color:#fff;
+  border-radius:10px;padding:.8rem;
+  font-weight:700;font-size:.85rem;
+  transition:all .25s;
+  box-shadow:0 4px 14px rgba(59,130,246,.25);
+}
+.card-footer-cta a:hover{background:var(--blue-d);transform:translateY(-1px);}
 
-/* SECTIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+
+/* ============================
+   STATS — Simplora strip style
+============================ */
+.stats-strip{
+  background:var(--bg2);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:2.2rem 5%;
+}
+.stats-inner{
+  max-width:1160px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1rem;text-align:center;
+}
+.s-box{padding:.8rem;border-right:1px solid var(--border);}
+.s-box:last-child{border-right:none;}
+.s-num{
+  font-size:2.1rem;font-weight:900;
+  letter-spacing:-.04em;color:var(--blue);
+  line-height:1;
+}
+.s-lbl{
+  font-size:.74rem;font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink4);margin-top:.35rem;
+}
+
+/* ============================
+   SECTION COMMON
+============================ */
 .section{padding:6rem 5%;}
-.section-alt{background:var(--cream2);}
+.section-alt{background:var(--bg2);}
 .wrap{max-width:1160px;margin:0 auto;}
-.section-header{margin-bottom:3.5rem;}
-.section-header.center{text-align:center;}
-.section-header.center .section-sub{margin:0 auto;}
-.eyebrow{display:inline-block;font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--saffron);margin-bottom:.7rem;}
-.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.85rem,3.5vw,2.8rem);font-weight:900;line-height:1.12;letter-spacing:-.025em;color:var(--ink);margin-bottom:.9rem;}
-.section-title em{font-style:italic;color:var(--saffron);}
-.section-sub{font-size:1rem;color:var(--ink2);line-height:1.75;max-width:520px;}
 
-/* COURSES */
-.courses-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;}
-.c-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:2rem;position:relative;overflow:hidden;transition:all .3s;}
-.c-card:hover{border-color:var(--saffron);transform:translateY(-4px);box-shadow:var(--shadow-lg);}
-.c-card-accent{position:absolute;top:0;left:0;width:4px;height:100%;border-radius:4px 0 0 4px;}
-.acc-saffron{background:linear-gradient(180deg,var(--saffron),var(--gold-light));}
-.acc-teal{background:linear-gradient(180deg,var(--teal),var(--teal-light));}
-.acc-gold{background:linear-gradient(180deg,var(--gold),var(--gold-light));}
-.acc-purple{background:linear-gradient(180deg,#7C3AED,#A78BFA);}
-.c-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.2rem;}
-.c-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;}
-.ic-saffron{background:rgba(232,96,10,.1);}.ic-teal{background:rgba(10,123,108,.1);}.ic-gold{background:rgba(201,147,42,.12);}.ic-purple{background:rgba(124,58,237,.1);}
-.c-card-badge{font-size:.65rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:.25rem .7rem;border-radius:50px;}
-.badge-hot{background:rgba(232,96,10,.12);color:var(--saffron);}
-.badge-new{background:rgba(10,123,108,.12);color:var(--teal);}
-.c-card h3{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:800;color:var(--ink);margin-bottom:.55rem;line-height:1.25;}
-.c-card p{font-size:.875rem;color:var(--ink2);line-height:1.65;margin-bottom:1rem;}
-.c-list{display:flex;flex-direction:column;gap:.38rem;}
-.c-list li{display:flex;align-items:center;gap:.6rem;font-size:.82rem;color:var(--ink2);font-weight:500;}
-.c-list li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--saffron);flex-shrink:0;}
+/* Simplora section header style */
+.sec-label{
+  display:inline-block;
+  font-size:.7rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--blue);margin-bottom:.7rem;
+}
+.sec-title{
+  font-size:clamp(1.8rem,3.2vw,2.6rem);
+  font-weight:900;letter-spacing:-.03em;
+  color:var(--ink);line-height:1.12;
+  margin-bottom:.85rem;
+}
+.sec-title .blue-span{color:var(--blue);}
+.sec-title .grad-span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.sec-sub{font-size:.975rem;color:var(--ink3);line-height:1.75;max-width:520px;}
+.sh-center{text-align:center;}
+.sh-center .sec-sub{margin:0 auto;}
 
-/* WHY */
+/* ============================
+   COURSES — Simplora card style
+============================ */
+.courses-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:1.2rem;
+  margin-top:3.5rem;
+}
+/* Simplora course card — white, border, colored icon box */
+.cc{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:var(--r-lg);
+  padding:1.8rem;
+  transition:all .3s;
+  position:relative;
+}
+.cc:hover{
+  border-color:transparent;
+  box-shadow:var(--shadow-lg);
+  transform:translateY(-4px);
+}
+/* top colored border on hover like Simplora active card */
+.cc::after{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;height:3px;
+  border-radius:var(--r-lg) var(--r-lg) 0 0;
+  opacity:0;transition:opacity .3s;
+}
+.cc:hover::after{opacity:1;}
+.cc1::after{background:linear-gradient(90deg,#3b82f6,#60a5fa);}
+.cc2::after{background:linear-gradient(90deg,#8b5cf6,#a78bfa);}
+.cc3::after{background:linear-gradient(90deg,#06b6d4,#67e8f9);}
+.cc4::after{background:linear-gradient(90deg,#10b981,#6ee7b7);}
+
+.cc-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.2rem;}
+/* Simplora colored icon boxes */
+.cc-icon-box{
+  width:52px;height:52px;
+  border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;
+}
+.ib-blue{background:var(--blue-light);}
+.ib-purple{background:var(--purple-light);}
+.ib-cyan{background:var(--cyan-light);}
+.ib-green{background:var(--green-light);}
+.cc-badge{
+  font-size:.63rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+  padding:.22rem .65rem;border-radius:50px;
+}
+.badge-blue{background:var(--blue-light);color:var(--blue);}
+.badge-purple{background:var(--purple-light);color:var(--purple);}
+.cc h3{
+  font-size:1.12rem;font-weight:800;
+  color:var(--ink);letter-spacing:-.02em;
+  margin-bottom:.5rem;
+}
+.cc p{font-size:.875rem;color:var(--ink3);line-height:1.65;margin-bottom:1rem;}
+.cc-list{display:flex;flex-direction:column;gap:.35rem;}
+.cc-list li{
+  display:flex;align-items:center;gap:.55rem;
+  font-size:.81rem;color:var(--ink3);font-weight:500;
+}
+.cc-list li span{
+  width:5px;height:5px;
+  border-radius:50%;background:var(--blue);flex-shrink:0;
+}
+
+/* ============================
+   WHY US
+============================ */
 .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
-.why-big-card{background:var(--white);border-radius:var(--r-lg);padding:2.5rem;box-shadow:var(--shadow-lg);border:1px solid var(--border);position:relative;overflow:hidden;}
-.why-big-card::after{content:'';position:absolute;bottom:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(232,96,10,.08),transparent 70%);pointer-events:none;}
-.big-stat{font-family:'Playfair Display',serif;font-size:5rem;font-weight:900;color:var(--saffron);line-height:1;margin-bottom:.4rem;}
-.big-stat-label{font-size:1rem;font-weight:600;color:var(--ink);line-height:1.4;}
-.big-stat-label span{color:var(--ink3);font-weight:400;}
-.why-chips{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.8rem;}
-.why-chip{display:flex;align-items:center;gap:.4rem;background:var(--cream2);border:1px solid var(--border);border-radius:50px;padding:.38rem .85rem;font-size:.77rem;font-weight:600;color:var(--ink);}
-.why-img-block{position:relative;}
-.why-float-card{position:absolute;bottom:-18px;right:-16px;background:var(--ink);border-radius:16px;padding:1rem 1.3rem;box-shadow:var(--shadow-lg);color:var(--white);}
-.wfc-num{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:900;color:var(--gold-light);line-height:1;}
-.wfc-label{font-size:.7rem;font-weight:600;color:rgba(255,255,255,.55);margin-top:.2rem;}
-.why-list{display:flex;flex-direction:column;gap:1.1rem;}
-.why-item{display:flex;gap:1.1rem;align-items:flex-start;padding:1.4rem 1.6rem;background:var(--white);border:1px solid var(--border);border-radius:var(--r);transition:all .25s;}
-.why-item:hover{border-color:var(--saffron);box-shadow:var(--shadow);transform:translateX(4px);}
-.why-num{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:900;color:rgba(232,96,10,.2);line-height:1;min-width:2.1rem;flex-shrink:0;}
-.why-content h4{font-size:.94rem;font-weight:700;color:var(--ink);margin-bottom:.3rem;}
-.why-content p{font-size:.84rem;color:var(--ink2);line-height:1.6;}
+/* Big visual card — Simplora style */
+.why-visual{position:relative;}
+.why-big-card{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:var(--r-xl);
+  padding:2.5rem;
+  box-shadow:var(--shadow-lg);
+  position:relative;overflow:hidden;
+}
+.why-big-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:var(--grad);
+}
+.why-big-card::after{
+  content:'';position:absolute;bottom:-50px;right:-50px;
+  width:180px;height:180px;
+  background:radial-gradient(circle,rgba(59,130,246,.06),transparent 70%);
+  pointer-events:none;
+}
+.wbc-num{
+  font-size:5rem;font-weight:900;letter-spacing:-.04em;
+  color:var(--blue);line-height:1;margin-bottom:.3rem;
+}
+.wbc-label{
+  font-size:.98rem;font-weight:700;color:var(--ink);line-height:1.4;
+}
+.wbc-label span{color:var(--ink3);font-weight:400;}
+.why-chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.8rem;}
+.w-chip{
+  display:flex;align-items:center;gap:.35rem;
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:50px;padding:.35rem .85rem;
+  font-size:.76rem;font-weight:600;color:var(--ink2);
+}
+.float-badge{
+  position:absolute;bottom:-18px;right:-14px;
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  padding:.9rem 1.2rem;
+  box-shadow:var(--shadow-lg);
+}
+.fb-num{font-size:1.9rem;font-weight:900;color:var(--yellow);line-height:1;letter-spacing:-.03em;}
+.fb-lbl{font-size:.68rem;font-weight:600;color:var(--ink3);margin-top:.15rem;}
+/* Why items */
+.why-items{display:flex;flex-direction:column;gap:1rem;}
+.wi{
+  display:flex;gap:1rem;align-items:flex-start;
+  padding:1.3rem 1.5rem;
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  transition:all .25s;
+}
+.wi:hover{border-color:rgba(59,130,246,.3);box-shadow:var(--shadow);transform:translateX(3px);}
+/* Simplora colored icon in why items */
+.wi-icon{
+  width:44px;height:44px;
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;flex-shrink:0;
+}
+.wi-content h4{font-size:.93rem;font-weight:700;color:var(--ink);margin-bottom:.25rem;letter-spacing:-.01em;}
+.wi-content p{font-size:.83rem;color:var(--ink3);line-height:1.6;}
 
-/* MENTOR */
-.mentor-section{background:var(--ink);padding:6rem 5%;position:relative;overflow:hidden;}
-.mentor-section::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(232,96,10,.12),transparent 65%);pointer-events:none;}
-.mentor-section::after{content:'';position:absolute;bottom:-80px;left:-60px;width:400px;height:400px;background:radial-gradient(circle,rgba(10,123,108,.1),transparent 65%);pointer-events:none;}
-.mentor-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;position:relative;z-index:1;}
-.mentor-eyebrow{display:inline-block;font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-light);margin-bottom:.8rem;}
-.mentor-title{font-family:'Playfair Display',serif;font-size:clamp(1.85rem,3.5vw,2.7rem);font-weight:900;line-height:1.12;color:var(--white);margin-bottom:1rem;}
-.mentor-title em{font-style:italic;color:var(--gold-light);}
-.mentor-desc{font-size:.95rem;color:rgba(255,255,255,.58);line-height:1.75;margin-bottom:2rem;}
-.mentor-cta{display:inline-flex;align-items:center;gap:.6rem;background:var(--saffron);color:#fff;padding:.95rem 2rem;border-radius:50px;font-weight:700;font-size:.9rem;transition:all .25s;box-shadow:0 8px 28px rgba(232,96,10,.4);}
-.mentor-cta:hover{background:var(--saffron-light);transform:translateY(-2px);}
-.mentor-visual{display:flex;flex-direction:column;gap:.9rem;}
-.mv-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--r);padding:1.2rem 1.5rem;display:flex;align-items:center;gap:1rem;transition:all .25s;}
-.mv-card:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);}
-.mv-icon{font-size:1.5rem;width:46px;height:46px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.05);border-radius:12px;flex-shrink:0;}
-.mv-text strong{display:block;font-size:.88rem;font-weight:700;color:var(--white);margin-bottom:.12rem;}
-.mv-text span{font-size:.78rem;color:rgba(255,255,255,.45);}
+/* ============================
+   MENTOR SECTION
+============================ */
+.mentor-sec{
+  background:var(--ink);
+  padding:6rem 5%;
+  position:relative;overflow:hidden;
+}
+.mentor-sec::before{
+  content:'';position:absolute;top:-150px;right:-100px;
+  width:500px;height:500px;
+  background:radial-gradient(circle,rgba(59,130,246,.18),transparent 65%);
+  pointer-events:none;
+}
+.mentor-sec::after{
+  content:'';position:absolute;bottom:-100px;left:-80px;
+  width:450px;height:450px;
+  background:radial-gradient(circle,rgba(139,92,246,.12),transparent 65%);
+  pointer-events:none;
+}
+.mentor-grid{
+  max-width:1160px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:5rem;
+  align-items:center;position:relative;z-index:1;
+}
+.ms-label{
+  display:inline-block;
+  background:rgba(59,130,246,.2);border:1px solid rgba(59,130,246,.3);
+  border-radius:50px;padding:.3rem .9rem;
+  font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:#93c5fd;margin-bottom:.9rem;
+}
+.ms-title{
+  font-size:clamp(1.8rem,3.2vw,2.6rem);
+  font-weight:900;letter-spacing:-.03em;
+  color:#fff;line-height:1.12;margin-bottom:1rem;
+}
+.ms-title .bl{color:#60a5fa;}
+.ms-desc{font-size:.95rem;color:rgba(255,255,255,.6);line-height:1.75;margin-bottom:2rem;}
+.ms-btn{
+  display:inline-flex;align-items:center;gap:.6rem;
+  background:var(--blue);color:#fff;
+  padding:.95rem 2rem;border-radius:50px;
+  font-weight:700;font-size:.9rem;
+  box-shadow:0 8px 24px rgba(59,130,246,.4);
+  transition:all .25s;
+}
+.ms-btn:hover{background:var(--blue-d);transform:translateY(-2px);}
+.ms-cards{display:flex;flex-direction:column;gap:.8rem;}
+.ms-card{
+  display:flex;align-items:center;gap:.9rem;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:var(--r);padding:1.1rem 1.4rem;
+  transition:all .25s;
+}
+.ms-card:hover{background:rgba(59,130,246,.1);border-color:rgba(59,130,246,.25);}
+.ms-card-icon{
+  width:44px;height:44px;border-radius:11px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.25rem;flex-shrink:0;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.1);
+}
+.ms-card-text strong{display:block;font-size:.88rem;font-weight:700;color:#fff;}
+.ms-card-text span{font-size:.77rem;color:rgba(255,255,255,.5);}
 
-/* LOCATION */
-.location-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start;}
-.loc-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:2.2rem;box-shadow:var(--shadow);}
-.loc-card h3{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:800;color:var(--ink);margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border);}
-.loc-row{display:flex;gap:.9rem;margin-bottom:1.1rem;align-items:flex-start;}
-.loc-row:last-of-type{margin-bottom:0;}
-.loc-icon-box{width:38px;height:38px;border-radius:10px;background:rgba(232,96,10,.1);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
-.loc-info label{font-size:.67rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:.2rem;}
-.loc-info p{font-size:.9rem;font-weight:600;color:var(--ink);line-height:1.5;}
-.loc-cta{margin-top:1.5rem;padding-top:1.3rem;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:.7rem;}
-.loc-btn{display:flex;align-items:center;justify-content:center;gap:.6rem;padding:.85rem;border-radius:12px;font-weight:700;font-size:.87rem;transition:all .25s;cursor:pointer;border:none;text-align:center;}
-.lb-wa{background:#25D366;color:#fff;}
-.lb-wa:hover{background:#1EBB58;transform:translateY(-1px);box-shadow:0 6px 20px rgba(37,211,102,.3);}
-.lb-call{background:var(--cream2);color:var(--ink);border:1px solid var(--border);}
-.lb-call:hover{border-color:var(--teal);color:var(--teal);}
-.map-card{border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow);background:var(--white);}
-.map-visual{height:270px;background:linear-gradient(135deg,#e8f4f1,#d4e8e0);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;}
-.map-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(10,123,108,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(10,123,108,.08) 1px,transparent 1px);background-size:28px 28px;}
-.map-streets{position:absolute;inset:0;pointer-events:none;}
-.map-streets::before{content:'';position:absolute;top:50%;left:0;right:0;height:3px;background:rgba(255,255,255,.65);transform:translateY(-50%);}
-.map-streets::after{content:'';position:absolute;left:40%;top:0;bottom:0;width:3px;background:rgba(255,255,255,.65);}
-.map-marker{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;}
-.map-marker-dot{width:22px;height:22px;background:var(--saffron);border-radius:50%;border:3px solid #fff;box-shadow:0 4px 16px rgba(232,96,10,.5);animation:mapBounce 1.5s ease-in-out infinite;}
-@keyframes mapBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
-.map-marker-label{margin-top:.5rem;background:var(--white);border-radius:8px;padding:.38rem .8rem;font-size:.75rem;font-weight:700;color:var(--ink);box-shadow:var(--shadow);white-space:nowrap;}
-.map-card-footer{padding:1.2rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
-.map-address{font-size:.82rem;color:var(--ink2);line-height:1.5;}
-.map-address strong{display:block;font-weight:700;color:var(--ink);}
-.map-direction{flex-shrink:0;background:var(--teal);color:#fff;padding:.6rem 1.1rem;border-radius:50px;font-size:.78rem;font-weight:700;display:flex;align-items:center;gap:.4rem;transition:all .2s;white-space:nowrap;}
-.map-direction:hover{background:var(--teal-light);transform:scale(1.03);}
+/* ============================
+   LOCATION
+============================ */
+.loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;}
+.loc-info-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--r-xl);padding:2rem;
+  box-shadow:var(--shadow);
+}
+.lic-title{
+  font-size:1.05rem;font-weight:800;color:var(--ink);
+  margin-bottom:1.4rem;padding-bottom:1rem;
+  border-bottom:1px solid var(--border);
+  letter-spacing:-.015em;
+}
+.l-row{display:flex;gap:.8rem;margin-bottom:1rem;align-items:flex-start;}
+.l-icon{
+  width:36px;height:36px;border-radius:9px;
+  background:var(--blue-light);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;flex-shrink:0;
+}
+.l-data label{
+  font-size:.63rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink4);display:block;margin-bottom:.18rem;
+}
+.l-data p{font-size:.88rem;font-weight:600;color:var(--ink2);line-height:1.5;}
+.l-divider{height:1px;background:var(--border);margin:1.2rem 0;}
+.l-btns{display:flex;flex-direction:column;gap:.6rem;}
+.lbtn{
+  display:flex;align-items:center;justify-content:center;gap:.55rem;
+  padding:.82rem;border-radius:10px;font-weight:700;font-size:.86rem;
+  transition:all .25s;cursor:pointer;border:none;
+}
+.lb-wa{background:#25d366;color:#fff;}
+.lb-wa:hover{background:#1ebb58;transform:translateY(-1px);box-shadow:0 6px 20px rgba(37,211,102,.3);}
+.lb-call{background:var(--bg2);border:1.5px solid var(--border);color:var(--ink2);}
+.lb-call:hover{border-color:var(--blue);color:var(--blue);}
 
-/* CTA */
-.cta-section{background:linear-gradient(135deg,var(--ink) 0%,#2D1B69 100%);padding:7rem 5%;text-align:center;position:relative;overflow:hidden;}
-.cta-section::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:500px;background:radial-gradient(ellipse,rgba(232,96,10,.18),transparent 65%);pointer-events:none;}
-.cta-section .eyebrow{color:var(--gold-light);}
-.cta-section .section-title{color:var(--white);}
-.cta-section .section-title em{color:var(--gold-light);}
-.cta-section .section-sub{color:rgba(255,255,255,.58);margin:0 auto 2.5rem;}
-.cta-btn-group{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;position:relative;z-index:1;}
-.btn-cta-main{display:inline-flex;align-items:center;gap:.7rem;background:var(--saffron);color:#fff;padding:1.1rem 2.5rem;border-radius:50px;font-weight:800;font-size:1rem;transition:all .25s;box-shadow:0 10px 36px rgba(232,96,10,.4);white-space:nowrap;}
-.btn-cta-main:hover{background:var(--saffron-light);transform:translateY(-3px);box-shadow:0 18px 50px rgba(232,96,10,.55);}
-.btn-cta-sec{display:inline-flex;align-items:center;gap:.6rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;padding:1.1rem 2rem;border-radius:50px;font-weight:600;font-size:.95rem;transition:all .25s;white-space:nowrap;}
-.btn-cta-sec:hover{background:rgba(255,255,255,.18);transform:translateY(-2px);}
-.cta-note{margin-top:1.5rem;font-size:.8rem;color:rgba(255,255,255,.38);position:relative;z-index:1;}
-.cta-note strong{color:rgba(255,255,255,.7);}
+/* MAP card */
+.map-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--shadow);}
+.map-vis{
+  height:270px;
+  background:linear-gradient(135deg,#eff6ff,#f0fdf4);
+  position:relative;display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.map-grid-bg{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(59,130,246,.08) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(59,130,246,.08) 1px,transparent 1px);
+  background-size:28px 28px;
+}
+.map-road-h{position:absolute;top:50%;left:0;right:0;height:3px;background:rgba(255,255,255,.9);transform:translateY(-50%);}
+.map-road-v{position:absolute;left:42%;top:0;bottom:0;width:3px;background:rgba(255,255,255,.9);}
+.map-marker{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:.45rem;}
+.map-dot{
+  width:22px;height:22px;
+  background:var(--blue);border-radius:50%;
+  border:3px solid white;
+  box-shadow:0 4px 16px rgba(59,130,246,.5);
+  animation:mapPop 1.6s ease-in-out infinite;
+}
+@keyframes mapPop{0%,100%{transform:scale(1);}50%{transform:scale(1.15) translateY(-4px);}}
+.map-label{
+  background:var(--white);border-radius:8px;
+  padding:.35rem .8rem;font-size:.74rem;font-weight:700;
+  color:var(--ink);box-shadow:var(--shadow);white-space:nowrap;
+  border:1px solid var(--border);
+}
+.map-footer{
+  padding:1.1rem 1.4rem;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:1rem;flex-wrap:wrap;
+  border-top:1px solid var(--border);
+}
+.map-address{font-size:.8rem;color:var(--ink3);line-height:1.5;}
+.map-address strong{display:block;font-weight:700;color:var(--ink2);}
+.map-dir-btn{
+  flex-shrink:0;display:flex;align-items:center;gap:.4rem;
+  background:var(--blue-light);color:var(--blue);
+  border:1px solid rgba(59,130,246,.25);
+  padding:.55rem 1rem;border-radius:50px;
+  font-size:.76rem;font-weight:700;
+  transition:all .2s;white-space:nowrap;
+}
+.map-dir-btn:hover{background:var(--blue);color:#fff;}
 
-/* FOOTER */
-footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.06);padding:3rem 5%;}
-.footer-inner{max-width:1160px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.5rem;}
-.footer-brand{font-family:'Playfair Display',serif;font-weight:800;font-size:1.05rem;color:var(--white);}
-.footer-brand small{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:.67rem;color:rgba(255,255,255,.35);font-weight:500;margin-top:.15rem;}
-.footer-links{display:flex;gap:1.5rem;flex-wrap:wrap;}
-.footer-links a{font-size:.82rem;color:rgba(255,255,255,.4);font-weight:500;transition:color .2s;}
-.footer-links a:hover{color:var(--gold-light);}
-.footer-copy{font-size:.75rem;color:rgba(255,255,255,.22);}
+/* ============================
+   CTA SECTION
+============================ */
+.cta-section{
+  background:var(--ink);
+  padding:7rem 5%;text-align:center;
+  position:relative;overflow:hidden;
+}
+.cta-section::before{
+  content:'';position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:800px;height:500px;
+  background:radial-gradient(ellipse,rgba(59,130,246,.2),transparent 65%);
+  pointer-events:none;
+}
+.cta-section .sec-label{color:#93c5fd;}
+.cta-section .sec-title{color:#fff;}
+.cta-section .sec-title .blue-span{color:#60a5fa;}
+.cta-section .sec-sub{color:rgba(255,255,255,.55);margin:0 auto 2.5rem;}
+.cta-btns{display:flex;justify-content:center;gap:.9rem;flex-wrap:wrap;position:relative;z-index:1;}
+.cta-main{
+  display:inline-flex;align-items:center;gap:.65rem;
+  background:var(--blue);color:#fff;
+  padding:1.1rem 2.5rem;border-radius:50px;
+  font-weight:800;font-size:1rem;
+  box-shadow:0 10px 36px rgba(59,130,246,.45);
+  transition:all .25s;white-space:nowrap;
+}
+.cta-main:hover{background:var(--blue-d);transform:translateY(-3px);box-shadow:0 18px 50px rgba(59,130,246,.55);}
+.cta-ghost{
+  display:inline-flex;align-items:center;gap:.6rem;
+  background:rgba(255,255,255,.08);
+  border:1.5px solid rgba(255,255,255,.2);
+  color:#fff;padding:1.1rem 2rem;border-radius:50px;
+  font-weight:600;font-size:.95rem;
+  transition:all .25s;white-space:nowrap;
+}
+.cta-ghost:hover{background:rgba(255,255,255,.14);transform:translateY(-2px);}
+.cta-note{margin-top:1.5rem;font-size:.78rem;color:rgba(255,255,255,.35);position:relative;z-index:1;}
+.cta-note strong{color:rgba(255,255,255,.6);}
 
-/* WA FLOAT */
-.wa-float{position:fixed;bottom:1.8rem;right:1.8rem;z-index:300;display:flex;align-items:center;gap:.65rem;background:#25D366;color:#fff;padding:.85rem 1.4rem;border-radius:50px;font-weight:700;font-size:.85rem;box-shadow:0 8px 28px rgba(37,211,102,.45);transition:all .25s;animation:fadeUp .8s .6s ease both;opacity:0;}
-.wa-float:hover{transform:translateY(-3px);box-shadow:0 16px 44px rgba(37,211,102,.6);}
+/* ============================
+   FOOTER
+============================ */
+footer{
+  background:var(--white);
+  border-top:1px solid var(--border);
+  padding:2.8rem 5%;
+}
+.foot-inner{
+  max-width:1160px;margin:0 auto;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.5rem;
+}
+.foot-brand{font-size:.95rem;font-weight:800;color:var(--ink);letter-spacing:-.02em;}
+.foot-brand small{display:block;font-size:.63rem;color:var(--ink4);font-weight:500;margin-top:.1rem;}
+.foot-links{display:flex;gap:1.5rem;flex-wrap:wrap;}
+.foot-links a{font-size:.8rem;color:var(--ink3);font-weight:500;transition:color .2s;}
+.foot-links a:hover{color:var(--blue);}
+.foot-copy{font-size:.73rem;color:var(--ink4);}
 
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
+/* ============================
+   WA FLOAT
+============================ */
+.wa-float{
+  position:fixed;bottom:1.8rem;right:1.8rem;z-index:300;
+  display:flex;align-items:center;gap:.6rem;
+  background:#25d366;color:#fff;
+  padding:.82rem 1.4rem;border-radius:50px;
+  font-weight:700;font-size:.83rem;
+  box-shadow:0 8px 28px rgba(37,211,102,.4);
+  transition:all .25s;
+  animation:fadeUp .8s .6s ease both;opacity:0;
+}
+.wa-float:hover{transform:translateY(-3px);box-shadow:0 16px 44px rgba(37,211,102,.55);}
+
+/* ============================
+   SCROLL REVEAL
+============================ */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
-.reveal-delay-1{transition-delay:.1s;}.reveal-delay-2{transition-delay:.2s;}.reveal-delay-3{transition-delay:.3s;}.reveal-delay-4{transition-delay:.4s;}
+.rd1{transition-delay:.07s;}.rd2{transition-delay:.14s;}.rd3{transition-delay:.21s;}.rd4{transition-delay:.28s;}
 
-/* RESPONSIVE */
+/* ============================
+   RESPONSIVE
+============================ */
 @media(max-width:1024px){
   .hero-inner{gap:3rem;}
   .why-grid{gap:3rem;}
-  .mentor-inner{gap:3rem;}
+  .mentor-grid{gap:3rem;}
 }
 @media(max-width:900px){
   .stats-inner{grid-template-columns:repeat(2,1fr);}
-  .stat-item:nth-child(2){border-right:none;}
-  .stat-item:nth-child(3){border-right:1px solid rgba(255,255,255,.08);border-top:1px solid rgba(255,255,255,.08);}
-  .stat-item:nth-child(4){border-top:1px solid rgba(255,255,255,.08);}
+  .s-box:nth-child(2){border-right:none;}
+  .s-box:nth-child(3){border-right:1px solid var(--border);border-top:1px solid var(--border);}
+  .s-box:nth-child(4){border-top:1px solid var(--border);}
   .courses-grid{grid-template-columns:1fr;}
   .why-grid{grid-template-columns:1fr;}
-  .mentor-inner{grid-template-columns:1fr;}
-  .location-grid{grid-template-columns:1fr;}
+  .mentor-grid{grid-template-columns:1fr;}
+  .loc-grid{grid-template-columns:1fr;}
   .nav-links{display:none;}
   .hamburger{display:flex;}
-  .why-float-card{right:1rem;bottom:-10px;}
+  .float-badge{right:.5rem;bottom:-8px;}
 }
 @media(max-width:768px){
-  .hero{padding:3.5rem 5% 3.5rem;}
+  .hero{padding:3.5rem 5%;}
   .hero-inner{grid-template-columns:1fr;gap:2.5rem;}
   .section{padding:4.5rem 5%;}
-  .hero-cta-row{flex-direction:column;align-items:stretch;}
-  .btn-main,.btn-outline{justify-content:center;}
-  .hero-trust{gap:.8rem;}
+  .hero-btns{flex-direction:column;align-items:stretch;}
+  .btn-blue,.btn-outline{justify-content:center;}
 }
 @media(max-width:480px){
-  .ann-bar{font-size:.7rem;padding:.45rem .7rem;}
+  .ann-bar{font-size:.7rem;}
   .hero-title{font-size:2.1rem;}
   .stats-inner{grid-template-columns:repeat(2,1fr);}
-  .stat-item{border-right:none!important;border-top:none!important;}
-  .stat-item:nth-child(odd){border-right:1px solid rgba(255,255,255,.08)!important;}
-  .stat-item:nth-child(3),.stat-item:nth-child(4){border-top:1px solid rgba(255,255,255,.08)!important;}
-  .cta-btn-group{flex-direction:column;align-items:stretch;}
-  .btn-cta-main,.btn-cta-sec{justify-content:center;}
-  .wa-float .wa-float-label{display:none;}
+  .s-box{border-right:none!important;border-top:none!important;}
+  .s-box:nth-child(odd){border-right:1px solid var(--border)!important;}
+  .s-box:nth-child(3),.s-box:nth-child(4){border-top:1px solid var(--border)!important;}
+  .cta-btns{flex-direction:column;align-items:stretch;}
+  .cta-main,.cta-ghost{justify-content:center;}
+  .wa-float .wa-lbl{display:none;}
   .wa-float{padding:.9rem;border-radius:50%;}
-  .footer-inner{flex-direction:column;text-align:center;}
-  .footer-links{justify-content:center;}
-  .footer-copy{text-align:center;}
-  .map-card-footer{flex-direction:column;align-items:flex-start;}
-  .why-float-card{display:none;}
+  .foot-inner{flex-direction:column;text-align:center;}
+  .foot-links{justify-content:center;}
+  .foot-copy{text-align:center;}
+  .map-footer{flex-direction:column;align-items:flex-start;}
+  .float-badge{display:none;}
 }
 </style>
 </head>
 <body>
 
+<!-- Announcement Bar -->
 <div class="ann-bar">
-  🎓 Admissions Open 2026 <span>·</span> Limited Seats <span>·</span> Call: +91 70499 21652
+  🎓 Admissions Open 2026
+  <span class="ann-highlight">Limited Seats</span>
+  Call Now: +91 70499 21652
 </div>
 
+<!-- Navbar -->
 <nav class="navbar" id="navbar">
-  <a href="#" class="nav-brand">
-    <div class="nav-brand-icon">🎓</div>
-    <div class="nav-brand-text">Success Tally Academy<small>Sanawad, M.P.</small></div>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">S</div>
+    <div class="nav-logo-text">
+      Success Tally Academy
+      <small>Sanawad, M.P.</small>
+    </div>
   </a>
   <div class="nav-links">
     <a href="#courses">Courses</a>
     <a href="#why">Why Us</a>
     <a href="#mentor">Mentor</a>
     <a href="#location">Location</a>
-    <a href="https://wa.me/917049921652?text=Hello%2C%20I%20want%20to%20know%20about%20courses%20and%20admissions%20at%20Success%20Tally%20Academy." target="_blank" class="btn-wa">
-      <svg width="15" height="15" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-      Enroll Free
+    <a href="https://wa.me/917049921652?text=Hello%2C%20I%20want%20to%20know%20about%20courses%20at%20Success%20Tally%20Academy." target="_blank" class="nav-cta">
+      <svg width="14" height="14" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      Get Started
     </a>
   </div>
-  <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
 </nav>
 
+<!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
-  <button class="mobile-close" id="mobileClose">✕</button>
-  <a href="#courses" onclick="closeMobile()">Courses</a>
-  <a href="#why" onclick="closeMobile()">Why Us</a>
-  <a href="#mentor" onclick="closeMobile()">Mentor</a>
-  <a href="#location" onclick="closeMobile()">Location</a>
-  <a href="https://wa.me/917049921652?text=Hello%2C%20I%20want%20to%20enroll%20at%20Success%20Tally%20Academy." target="_blank" onclick="closeMobile()" style="background:var(--saffron);color:#fff;padding:.9rem 2rem;border-radius:50px;font-size:1rem;font-family:'Plus Jakarta Sans',sans-serif;">Chat on WhatsApp</a>
+  <button class="mob-close" id="mobClose">✕</button>
+  <a href="#courses" onclick="closeMob()">Courses</a>
+  <a href="#why" onclick="closeMob()">Why Us</a>
+  <a href="#mentor" onclick="closeMob()">Mentor</a>
+  <a href="#location" onclick="closeMob()">Location</a>
+  <a href="https://wa.me/917049921652?text=Hello%2C%20I%20want%20to%20enroll%20at%20Success%20Tally%20Academy." target="_blank" onclick="closeMob()" style="background:var(--blue);color:#fff;padding:.9rem 2.2rem;border-radius:50px;font-size:.9rem;font-weight:700;margin-top:.5rem;">Enroll on WhatsApp</a>
 </div>
 
-<!-- HERO -->
+<!-- ===== HERO ===== -->
 <section class="hero">
-  <div class="hero-blob blob1"></div>
-  <div class="hero-blob blob2"></div>
   <div class="hero-inner">
-    <div class="hero-left">
-      <div class="hero-eyebrow"><span class="live-dot"></span>Admissions Open 2026</div>
-      <h1 class="hero-title">Start Your<br><em>Career</em> with the<br><span class="teal-word">Right Skills</span></h1>
-      <p class="hero-desc">Master <strong>Tally Prime, MS Office, Computer Basics</strong> & more at Sanawad's most trusted institute — guided by expert mentor <strong>Mahavir Birla Sir</strong>.</p>
-      <div class="hero-cta-row">
-        <a href="https://wa.me/917049921652?text=Hello%20Sir%2C%20I%20want%20to%20enroll%20at%20Success%20Tally%20Academy.%20Please%20share%20course%20details%20and%20fees." target="_blank" class="btn-main">
+    <div>
+      <div class="hero-pill">
+        <span class="live-dot"></span>
+        Admissions Open 2026
+      </div>
+      <h1 class="hero-title">
+        Teaching Children<br>
+        Computer Skills Will<br>
+        Give Them <span class="blue-span">Future Success</span>
+      </h1>
+      <p class="hero-desc">
+        Master <strong>Tally Prime, MS Office, Computer Basics</strong> & more at Sanawad's most trusted institute — guided by expert mentor <strong>Mahavir Birla Sir</strong>.
+      </p>
+      <div class="hero-btns">
+        <a href="https://wa.me/917049921652?text=Hello%20Sir%2C%20I%20want%20to%20enroll%20at%20Success%20Tally%20Academy.%20Please%20share%20course%20details%20and%20fees." target="_blank" class="btn-blue">
           <svg width="17" height="17" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
           Enroll on WhatsApp
         </a>
-        <a href="#courses" class="btn-outline">Explore Courses ↓</a>
+        <a href="#courses" class="btn-outline">Explore Courses →</a>
       </div>
       <div class="hero-trust">
         <div class="trust-chip">✅ Certificate Provided</div>
-        <div class="trust-sep"></div>
+        <div class="t-sep"></div>
         <div class="trust-chip">🏆 Expert Mentor</div>
-        <div class="trust-sep"></div>
+        <div class="t-sep"></div>
         <div class="trust-chip">⚡ Job-Ready Training</div>
       </div>
     </div>
-    <div class="hero-right">
-      <div class="hero-card">
-        <div class="mentor-row">
-          <div class="mentor-ava">MB</div>
-          <div class="mentor-meta">
-            <div class="name">Mahavir Birla Sir</div>
-            <div class="role">Lead Mentor & Founder</div>
-            <div class="badge">✦ Success Tally Academy</div>
-          </div>
+
+    <!-- Hero Card -->
+    <div class="hero-card">
+      <div class="mentor-row">
+        <div class="m-ava">MB</div>
+        <div class="m-info">
+          <div class="m-name">Mahavir Birla Sir</div>
+          <div class="m-role">Lead Mentor & Founder</div>
+          <div class="m-badge">✦ Success Tally Academy</div>
         </div>
-        <div class="course-pills">
-          <div class="cpill"><span class="cpill-dot d1"></span><span class="cpill-label">Tally Prime with GST</span><span class="cpill-tag">Popular</span></div>
-          <div class="cpill"><span class="cpill-dot d2"></span><span class="cpill-label">Basic Computer Course</span><span class="cpill-tag">Beginner</span></div>
-          <div class="cpill"><span class="cpill-dot d3"></span><span class="cpill-label">MS Office Suite</span><span class="cpill-tag">Office</span></div>
-          <div class="cpill"><span class="cpill-dot d4"></span><span class="cpill-label">English & Hindi Typing</span><span class="cpill-tag">Govt.</span></div>
+      </div>
+      <div class="course-rows">
+        <div class="crow">
+          <div class="crow-icon ci-blue">📊</div>
+          <span class="crow-label">Tally Prime with GST</span>
+          <span class="crow-tag ct-blue">Popular</span>
         </div>
-        <div class="hero-card-footer">
-          <a href="https://wa.me/917049921652?text=Hello%20Sir%2C%20I%20want%20to%20know%20about%20course%20fees%20and%20batch%20schedule." target="_blank">
-            <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-            Ask About Fees & Schedule
-          </a>
+        <div class="crow">
+          <div class="crow-icon ci-cyan">💻</div>
+          <span class="crow-label">Basic Computer Course</span>
+          <span class="crow-tag ct-cyan">Beginner</span>
         </div>
+        <div class="crow">
+          <div class="crow-icon ci-purple">📁</div>
+          <span class="crow-label">MS Office Suite</span>
+          <span class="crow-tag ct-purple">Office</span>
+        </div>
+        <div class="crow">
+          <div class="crow-icon ci-green">⌨️</div>
+          <span class="crow-label">English & Hindi Typing</span>
+          <span class="crow-tag ct-green">Govt.</span>
+        </div>
+      </div>
+      <div class="card-footer-cta">
+        <a href="https://wa.me/917049921652?text=Hello%20Sir%2C%20Please%20share%20course%20fees%20and%20batch%20schedule." target="_blank">
+          <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Ask About Fees & Schedule
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- STATS -->
+<!-- ===== STATS ===== -->
 <div class="stats-strip">
   <div class="stats-inner">
-    <div class="stat-item reveal"><div class="stat-num" id="s1">0+</div><div class="stat-label">Students Trained</div></div>
-    <div class="stat-item reveal reveal-delay-1"><div class="stat-num" id="s2">0+</div><div class="stat-label">Career Courses</div></div>
-    <div class="stat-item reveal reveal-delay-2"><div class="stat-num" id="s3">0%</div><div class="stat-label">Practical Training</div></div>
-    <div class="stat-item reveal reveal-delay-3"><div class="stat-num" id="s4">2026</div><div class="stat-label">Admissions Open</div></div>
+    <div class="s-box reveal"><div class="s-num" id="s1">500+</div><div class="s-lbl">Students Trained</div></div>
+    <div class="s-box reveal rd1"><div class="s-num" id="s2">4+</div><div class="s-lbl">Career Courses</div></div>
+    <div class="s-box reveal rd2"><div class="s-num" id="s3">100%</div><div class="s-lbl">Practical Training</div></div>
+    <div class="s-box reveal rd3"><div class="s-num" id="s4">2026</div><div class="s-lbl">Admissions Open</div></div>
   </div>
 </div>
 
-<!-- COURSES -->
+<!-- ===== COURSES ===== -->
 <section class="section" id="courses">
   <div class="wrap">
-    <div class="section-header center">
-      <span class="eyebrow">Our Programs</span>
-      <h2 class="section-title">Courses That Build <em>Real Careers</em></h2>
-      <p class="section-sub">Industry-aligned programs with 100% hands-on practice — designed to make you job-ready from day one.</p>
+    <div class="sh-center">
+      <div class="sec-label">Our Programs</div>
+      <h2 class="sec-title">Everything You Need, <span class="blue-span">All in One Place</span></h2>
+      <p class="sec-sub">Industry-aligned courses with 100% hands-on practice — designed to make you job-ready from day one.</p>
     </div>
     <div class="courses-grid">
-      <div class="c-card reveal">
-        <div class="c-card-accent acc-saffron"></div>
-        <div class="c-card-top"><div class="c-icon ic-saffron">📊</div><span class="c-card-badge badge-hot">🔥 Most Popular</span></div>
+      <div class="cc cc1 reveal">
+        <div class="cc-head">
+          <div class="cc-icon-box ib-blue">📊</div>
+          <span class="cc-badge badge-blue">🔥 Most Popular</span>
+        </div>
         <h3>Tally Prime with GST</h3>
         <p>India's #1 accounting software. Handle real company accounts, GST filing, and financial reports end-to-end.</p>
-        <ul class="c-list">
-          <li>Manufacturing Company Accounting</li><li>Trading Company Accounting</li><li>Services Company Accounting</li><li>GST Billing & Return Filing</li><li>Payroll, TDS & Audit Reports</li>
+        <ul class="cc-list">
+          <li><span></span>Manufacturing Company Accounting</li>
+          <li><span></span>Trading Company Accounting</li>
+          <li><span></span>Services Company Accounting</li>
+          <li><span></span>GST Billing & Return Filing</li>
+          <li><span></span>Payroll, TDS & Audit Reports</li>
         </ul>
       </div>
-      <div class="c-card reveal reveal-delay-1">
-        <div class="c-card-accent acc-teal"></div>
-        <div class="c-card-top"><div class="c-icon ic-teal">💻</div><span class="c-card-badge badge-new">✦ For Beginners</span></div>
+      <div class="cc cc2 reveal rd1">
+        <div class="cc-head">
+          <div class="cc-icon-box ib-purple">💻</div>
+          <span class="cc-badge badge-purple">✦ For Beginners</span>
+        </div>
         <h3>Basic Computer Course</h3>
         <p>Complete beginner-to-confident foundation. Learn to operate computers fluently for work, study, or government jobs.</p>
-        <ul class="c-list">
-          <li>Computer Fundamentals & Basics</li><li>Hardware & Software Concepts</li><li>Windows OS & File Management</li><li>Internet, Email & Online Tools</li>
+        <ul class="cc-list">
+          <li><span></span>Computer Fundamentals & Basics</li>
+          <li><span></span>Hardware & Software Concepts</li>
+          <li><span></span>Windows OS & File Management</li>
+          <li><span></span>Internet, Email & Online Tools</li>
         </ul>
       </div>
-      <div class="c-card reveal reveal-delay-2">
-        <div class="c-card-accent acc-gold"></div>
-        <div class="c-card-top"><div class="c-icon ic-gold">📁</div></div>
+      <div class="cc cc3 reveal rd2">
+        <div class="cc-head">
+          <div class="cc-icon-box ib-cyan">📁</div>
+        </div>
         <h3>MS Office Suite</h3>
-        <p>World's most-used productivity tools — required in every office, firm, and government department.</p>
-        <ul class="c-list">
-          <li>Microsoft Word — Documents & Letters</li><li>Microsoft Excel — Data, Formulas & Charts</li><li>Microsoft PowerPoint — Presentations</li><li>Real-world project work included</li>
+        <p>World's most-used productivity tools — required in every office, firm, and government department across India.</p>
+        <ul class="cc-list">
+          <li><span></span>Microsoft Word — Documents & Letters</li>
+          <li><span></span>Microsoft Excel — Data, Formulas & Charts</li>
+          <li><span></span>Microsoft PowerPoint — Presentations</li>
+          <li><span></span>Real-world project work included</li>
         </ul>
       </div>
-      <div class="c-card reveal reveal-delay-3">
-        <div class="c-card-accent acc-purple"></div>
-        <div class="c-card-top"><div class="c-icon ic-purple">⌨️</div></div>
+      <div class="cc cc4 reveal rd3">
+        <div class="cc-head">
+          <div class="cc-icon-box ib-green">⌨️</div>
+        </div>
         <h3>Typing & Notepad</h3>
-        <p>Build speed and accuracy in typing — essential for government job exams and daily office work.</p>
-        <ul class="c-list">
-          <li>English Typing — WPM Speed Tests</li><li>Hindi Typing — Kruti Dev & Mangal</li><li>Notepad Basics & Text Editing</li><li>Government Exam Preparation</li>
+        <p>Build speed and accuracy — essential for government job exams and daily office work across all sectors.</p>
+        <ul class="cc-list">
+          <li><span></span>English Typing — WPM Speed Tests</li>
+          <li><span></span>Hindi Typing — Kruti Dev & Mangal</li>
+          <li><span></span>Notepad Basics & Text Editing</li>
+          <li><span></span>Government Exam Preparation</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- WHY -->
+<!-- ===== WHY US ===== -->
 <section class="section section-alt" id="why">
   <div class="wrap">
     <div class="why-grid">
-      <div class="why-img-block reveal">
+      <div class="why-visual reveal">
         <div class="why-big-card">
-          <div class="big-stat">500+</div>
-          <div class="big-stat-label">Students Trained<br><span>and career-launched at our academy</span></div>
+          <div class="wbc-num">500+</div>
+          <div class="wbc-label">Students Trained<br><span>and career-launched at our academy</span></div>
           <div class="why-chips">
-            <div class="why-chip">🏆 Expert Mentor</div>
-            <div class="why-chip">📜 Certificate</div>
-            <div class="why-chip">⚡ Fast-Track Batches</div>
-            <div class="why-chip">🕐 Flexible Timings</div>
-            <div class="why-chip">💼 Job Support</div>
-            <div class="why-chip">🎯 100% Practical</div>
+            <div class="w-chip">🏆 Expert Mentor</div>
+            <div class="w-chip">📜 Certificate</div>
+            <div class="w-chip">⚡ Fast-Track Batches</div>
+            <div class="w-chip">🕐 Flexible Timing</div>
+            <div class="w-chip">💼 Job Support</div>
+            <div class="w-chip">🎯 100% Practical</div>
           </div>
         </div>
-        <div class="why-float-card">
-          <div class="wfc-num">4★</div>
-          <div class="wfc-label">Student Rating</div>
+        <div class="float-badge">
+          <div class="fb-num">4.8★</div>
+          <div class="fb-lbl">Student Rating</div>
         </div>
       </div>
       <div>
-        <span class="eyebrow">Why Choose Us</span>
-        <h2 class="section-title">We Build <em>Confident</em><br>Professionals</h2>
-        <div class="why-list">
-          <div class="why-item reveal"><div class="why-num">01</div><div class="why-content"><h4>Expert Mentor — Mahavir Birla Sir</h4><p>Personal guidance from a highly experienced educator who ensures every student truly understands, not just memorizes.</p></div></div>
-          <div class="why-item reveal reveal-delay-1"><div class="why-num">02</div><div class="why-content"><h4>100% Practical, Hands-On Learning</h4><p>Every class runs on live software with real data. You leave ready to work from day one.</p></div></div>
-          <div class="why-item reveal reveal-delay-2"><div class="why-num">03</div><div class="why-content"><h4>Career-Focused Curriculum</h4><p>Courses built for accounting firms, government jobs, and businesses — skills employers actually want.</p></div></div>
-          <div class="why-item reveal reveal-delay-3"><div class="why-num">04</div><div class="why-content"><h4>Affordable, Local & Accessible</h4><p>Premium quality training at fair local prices. Conveniently located in the heart of Sanawad, M.P.</p></div></div>
+        <div class="sec-label">Why Choose Us</div>
+        <h2 class="sec-title">Powerful Learning<br>for <span class="blue-span">Every Student</span></h2>
+        <div class="why-items">
+          <div class="wi reveal">
+            <div class="wi-icon ib-blue">🏆</div>
+            <div class="wi-content">
+              <h4>Expert Mentor — Mahavir Birla Sir</h4>
+              <p>Personal guidance from an experienced educator ensuring every student truly understands, not just memorizes.</p>
+            </div>
+          </div>
+          <div class="wi reveal rd1">
+            <div class="wi-icon ib-cyan">⚡</div>
+            <div class="wi-content">
+              <h4>100% Practical, Hands-On Learning</h4>
+              <p>Every class runs on live software with real data. You leave ready to work from day one.</p>
+            </div>
+          </div>
+          <div class="wi reveal rd2">
+            <div class="wi-icon ib-purple">🎯</div>
+            <div class="wi-content">
+              <h4>Career-Focused Curriculum</h4>
+              <p>Built for accounting firms, government jobs, and businesses — skills employers actually need.</p>
+            </div>
+          </div>
+          <div class="wi reveal rd3">
+            <div class="wi-icon ib-green">💰</div>
+            <div class="wi-content">
+              <h4>Affordable, Local & Accessible</h4>
+              <p>Premium quality training at fair local prices, in the heart of Sanawad, M.P.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MENTOR -->
-<section class="mentor-section" id="mentor">
-  <div class="mentor-inner">
+<!-- ===== MENTOR ===== -->
+<section class="mentor-sec" id="mentor">
+  <div class="mentor-grid">
     <div class="reveal">
-      <span class="mentor-eyebrow">Meet Your Mentor</span>
-      <h2 class="mentor-title">Guided by<br><em>Mahavir Birla Sir</em></h2>
-      <p class="mentor-desc">An experienced educator dedicated to building career-ready professionals. At Success Tally Academy, every student receives personal attention, practical knowledge, and real-world skills.</p>
-      <a href="https://wa.me/917049921652?text=Hello%20Mahavir%20Sir%2C%20I%20would%20like%20to%20know%20more%20about%20your%20courses%20and%20fees." target="_blank" class="mentor-cta">
+      <div class="ms-label">👨‍🏫 Meet Your Mentor</div>
+      <h2 class="ms-title">Guided by <span class="bl">Mahavir Birla Sir</span></h2>
+      <p class="ms-desc">An experienced educator dedicated to building career-ready professionals. Every student gets personal attention, practical knowledge, and real-world skills that make them stand out in the job market.</p>
+      <a href="https://wa.me/917049921652?text=Hello%20Mahavir%20Sir%2C%20I%20would%20like%20to%20know%20more%20about%20your%20courses%20and%20fees." target="_blank" class="ms-btn">
         <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
         Talk to Mahavir Sir
       </a>
     </div>
-    <div class="mentor-visual reveal reveal-delay-1">
-      <div class="mv-card"><div class="mv-icon">📊</div><div class="mv-text"><strong>Tally Prime Expert</strong><span>GST, Payroll & Audit — Complete Coverage</span></div></div>
-      <div class="mv-card"><div class="mv-icon">💻</div><div class="mv-text"><strong>Computer Fundamentals</strong><span>Hardware, Software & Operating Systems</span></div></div>
-      <div class="mv-card"><div class="mv-icon">📁</div><div class="mv-text"><strong>MS Office Trainer</strong><span>Word, Excel & PowerPoint Mastery</span></div></div>
-      <div class="mv-card"><div class="mv-icon">⌨️</div><div class="mv-text"><strong>Typing Speed Coach</strong><span>English & Hindi — Govt. Exam Ready</span></div></div>
-      <div class="mv-card"><div class="mv-icon">🎓</div><div class="mv-text"><strong>Career Guidance</strong><span>Job Support After Course Completion</span></div></div>
+    <div class="ms-cards reveal rd1">
+      <div class="ms-card"><div class="ms-card-icon">📊</div><div class="ms-card-text"><strong>Tally Prime Expert</strong><span>GST, Payroll & Audit — Complete Coverage</span></div></div>
+      <div class="ms-card"><div class="ms-card-icon">💻</div><div class="ms-card-text"><strong>Computer Fundamentals</strong><span>Hardware, Software & Operating Systems</span></div></div>
+      <div class="ms-card"><div class="ms-card-icon">📁</div><div class="ms-card-text"><strong>MS Office Trainer</strong><span>Word, Excel & PowerPoint Mastery</span></div></div>
+      <div class="ms-card"><div class="ms-card-icon">⌨️</div><div class="ms-card-text"><strong>Typing Speed Coach</strong><span>English & Hindi — Govt. Exam Ready</span></div></div>
+      <div class="ms-card"><div class="ms-card-icon">🎓</div><div class="ms-card-text"><strong>Career Guidance</strong><span>Job Support After Course Completion</span></div></div>
     </div>
   </div>
 </section>
 
-<!-- LOCATION -->
+<!-- ===== LOCATION ===== -->
 <section class="section" id="location">
   <div class="wrap">
-    <div class="section-header">
-      <span class="eyebrow">Find Us</span>
-      <h2 class="section-title">Conveniently Located<br>in <em>Sanawad, M.P.</em></h2>
-      <p class="section-sub">Easy to reach, right in the heart of Sanawad. Come visit us or WhatsApp us for directions anytime.</p>
-    </div>
-    <div class="location-grid">
-      <div class="loc-card reveal">
-        <h3>Academy Details</h3>
-        <div class="loc-row"><div class="loc-icon-box">📍</div><div class="loc-info"><label>Address</label><p>Shaskiya Hospital के सामने,<br>Dr. Jayesh Jain के पास,<br>Saad Market, Sanawad, M.P.</p></div></div>
-        <div class="loc-row"><div class="loc-icon-box">📞</div><div class="loc-info"><label>Phone / WhatsApp</label><p>+91 70499 21652</p></div></div>
-        <div class="loc-row"><div class="loc-icon-box">👨‍🏫</div><div class="loc-info"><label>Mentor</label><p>Mahavir Birla Sir</p></div></div>
-        <div class="loc-row"><div class="loc-icon-box">🕐</div><div class="loc-info"><label>Batch Timings</label><p>Morning & Evening Batches<br>Monday to Saturday</p></div></div>
-        <div class="loc-cta">
-          <a href="https://wa.me/917049921652?text=Hello%20Sir%2C%20I%20want%20to%20visit%20Success%20Tally%20Academy.%20Please%20share%20your%20exact%20location." target="_blank" class="loc-btn lb-wa">
+    <div class="sec-label">Find Us</div>
+    <h2 class="sec-title">Conveniently Located in <span class="blue-span">Sanawad</span></h2>
+    <p class="sec-sub" style="margin-bottom:3rem;">Easy to reach, right in the heart of Sanawad. Visit or WhatsApp us anytime.</p>
+    <div class="loc-grid">
+      <div class="loc-info-card reveal">
+        <div class="lic-title">📋 Academy Details</div>
+        <div class="l-row"><div class="l-icon">📍</div><div class="l-data"><label>Address</label><p>Shaskiya Hospital के सामने,<br>Dr. Jayesh Jain के पास,<br>Saad Market, Sanawad, M.P.</p></div></div>
+        <div class="l-row"><div class="l-icon">📞</div><div class="l-data"><label>Phone / WhatsApp</label><p>+91 70499 21652</p></div></div>
+        <div class="l-row"><div class="l-icon">👨‍🏫</div><div class="l-data"><label>Mentor</label><p>Mahavir Birla Sir</p></div></div>
+        <div class="l-row"><div class="l-icon">🕐</div><div class="l-data"><label>Batch Timings</label><p>Morning & Evening Batches<br>Monday to Saturday</p></div></div>
+        <div class="l-divider"></div>
+        <div class="l-btns">
+          <a href="https://wa.me/917049921652?text=Hello%20Sir%2C%20I%20want%20to%20visit%20Success%20Tally%20Academy.%20Please%20share%20your%20exact%20location." target="_blank" class="lbtn lb-wa">
             <svg width="15" height="15" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
             WhatsApp for Directions
           </a>
-          <a href="tel:+917049921652" class="loc-btn lb-call">📞 Call +91 70499 21652</a>
+          <a href="tel:+917049921652" class="lbtn lb-call">📞 Call +91 70499 21652</a>
         </div>
       </div>
-      <div class="map-card reveal reveal-delay-1">
-        <div class="map-visual">
-          <div class="map-grid"></div>
-          <div class="map-streets"></div>
+      <div class="map-card reveal rd1">
+        <div class="map-vis">
+          <div class="map-grid-bg"></div>
+          <div class="map-road-h"></div>
+          <div class="map-road-v"></div>
           <div class="map-marker">
-            <div class="map-marker-dot"></div>
-            <div class="map-marker-label">📍 Success Tally Academy</div>
+            <div class="map-dot"></div>
+            <div class="map-label">📍 Success Tally Academy</div>
           </div>
         </div>
-        <div class="map-card-footer">
+        <div class="map-footer">
           <div class="map-address"><strong>Success Tally Academy</strong>Saad Market, Near Govt. Hospital, Sanawad</div>
-          <a href="https://wa.me/917049921652?text=Please%20share%20Google%20Maps%20location%20of%20Success%20Tally%20Academy%20Sanawad." target="_blank" class="map-direction">🗺 Get Location</a>
+          <a href="https://wa.me/917049921652?text=Please%20share%20Google%20Maps%20location%20of%20Success%20Tally%20Academy." target="_blank" class="map-dir-btn">🗺 Get Location</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FINAL CTA -->
+<!-- ===== CTA ===== -->
 <section class="cta-section">
   <div class="wrap" style="position:relative;z-index:1;">
-    <span class="eyebrow">Start Today</span>
-    <h2 class="section-title" style="color:white;margin:.5rem auto 1rem;max-width:560px;">करियर की शुरुआत कीजिए<br><em>एक शानदार कोर्स के साथ</em></h2>
-    <p class="section-sub" style="color:rgba(255,255,255,.58);margin:0 auto 2.5rem;">बनिए एक Accounting Professional — secure your future with in-demand digital skills.</p>
-    <div class="cta-btn-group">
-      <a href="https://wa.me/917049921652?text=Hello%20Mahavir%20Sir%2C%20I%20am%20interested%20in%20enrolling%20at%20Success%20Tally%20Academy.%20Please%20share%20course%20details%2C%20fees%2C%20and%20schedule." target="_blank" class="btn-cta-main">
-        <svg width="19" height="19" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    <div class="sec-label">Start Today</div>
+    <h2 class="sec-title">Ready to <span class="blue-span">Transform Your Career?</span></h2>
+    <p class="sec-sub">करियर की शुरुआत कीजिए एक शानदार कोर्स के साथ — बनिए एक Accounting Professional with Mahavir Birla Sir.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/917049921652?text=Hello%20Mahavir%20Sir%2C%20I%20am%20interested%20in%20enrolling%20at%20Success%20Tally%20Academy.%20Please%20share%20course%20details%2C%20fees%2C%20and%20schedule." target="_blank" class="cta-main">
+        <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
         Enroll Now — WhatsApp Us
       </a>
-      <a href="tel:+917049921652" class="btn-cta-sec">📞 Call +91 70499 21652</a>
+      <a href="tel:+917049921652" class="cta-ghost">📞 Call +91 70499 21652</a>
     </div>
-    <p class="cta-note"><strong>✓ Free counselling</strong> · Replies within minutes · Seats filling fast</p>
+    <p class="cta-note"><strong>✓ Free counselling</strong> · Replies within minutes · Seats filling fast for 2026</p>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ===== FOOTER ===== -->
 <footer>
-  <div class="footer-inner">
-    <div class="footer-brand">Success Tally Academy<small>Saad Market, Sanawad, Madhya Pradesh</small></div>
-    <ul class="footer-links">
-      <li><a href="#courses">Courses</a></li><li><a href="#why">Why Us</a></li><li><a href="#mentor">Mentor</a></li><li><a href="#location">Location</a></li><li><a href="https://wa.me/917049921652" target="_blank">WhatsApp</a></li>
+  <div class="foot-inner">
+    <div class="foot-brand">Success Tally Academy<small>Saad Market, Sanawad, Madhya Pradesh</small></div>
+    <ul class="foot-links">
+      <li><a href="#courses">Courses</a></li>
+      <li><a href="#why">Why Us</a></li>
+      <li><a href="#mentor">Mentor</a></li>
+      <li><a href="#location">Location</a></li>
+      <li><a href="https://wa.me/917049921652" target="_blank">WhatsApp</a></li>
     </ul>
-    <p class="footer-copy">© 2026 Success Tally Academy · Mentor: Mahavir Birla Sir</p>
+    <p class="foot-copy">© 2026 Success Tally Academy · Mentor: Mahavir Birla Sir</p>
   </div>
 </footer>
 
-<!-- FLOATING WA -->
+<!-- Floating WhatsApp -->
 <a href="https://wa.me/917049921652?text=Hello%2C%20I%20want%20to%20enquire%20about%20courses%20at%20Success%20Tally%20Academy%20Sanawad." target="_blank" class="wa-float">
-  <svg width="19" height="19" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-  <span class="wa-float-label">Chat Now</span>
+  <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  <span class="wa-lbl">Chat Now</span>
 </a>
 
 <script>
-// Navbar scroll
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 30); });
+// Navbar shadow on scroll
+const nb=document.getElementById('navbar');
+window.addEventListener('scroll',()=>nb.classList.toggle('scrolled',scrollY>30));
 
-// Hamburger
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
-document.getElementById('mobileClose').addEventListener('click', () => mobileMenu.classList.remove('open'));
-hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
-function closeMobile() { mobileMenu.classList.remove('open'); }
+// Mobile menu
+document.getElementById('hamburger').onclick=()=>document.getElementById('mobileMenu').classList.add('open');
+document.getElementById('mobClose').onclick=()=>document.getElementById('mobileMenu').classList.remove('open');
+function closeMob(){document.getElementById('mobileMenu').classList.remove('open');}
 
 // Scroll reveal
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+const ro=new IntersectionObserver(e=>{
+  e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');ro.unobserve(x.target);}});
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
 
 // Counter animation
-function animateCount(el, target, suffix) {
-  let start = 0;
-  const dur = 1800, step = target / (dur / 16);
-  const timer = setInterval(() => {
-    start = Math.min(start + step, target);
-    el.textContent = Math.floor(start) + suffix;
-    if(start >= target) clearInterval(timer);
-  }, 16);
+function cnt(el,to,sf){
+  let v=0,t=setInterval(()=>{
+    v=Math.min(v+to/100,to);
+    el.textContent=Math.floor(v)+sf;
+    if(v>=to)clearInterval(t);
+  },16);
 }
-const statsObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if(e.isIntersecting){
-      animateCount(document.getElementById('s1'), 500, '+');
-      animateCount(document.getElementById('s2'), 4, '+');
-      animateCount(document.getElementById('s3'), 100, '%');
-      statsObserver.unobserve(e.target);
+const so=new IntersectionObserver(e=>{
+  e.forEach(x=>{
+    if(x.isIntersecting){
+      cnt(document.getElementById('s1'),500,'+');
+      cnt(document.getElementById('s2'),4,'+');
+      cnt(document.getElementById('s3'),100,'%');
+      so.unobserve(x.target);
     }
   });
-}, { threshold: 0.3 });
-const strip = document.querySelector('.stats-strip');
-if(strip) statsObserver.observe(strip);
+},{threshold:.3});
+const ss=document.querySelector('.stats-strip');
+if(ss)so.observe(ss);
 </script>
 </body>
 </html>
